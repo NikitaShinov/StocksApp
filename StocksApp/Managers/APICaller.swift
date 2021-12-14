@@ -63,6 +63,7 @@ final class APICaller {
             } catch {
                 completion(.failure(error))
             }
-        }.resume()
+        }
+        task.resume()
     }
 }
