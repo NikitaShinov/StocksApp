@@ -13,15 +13,20 @@ final class APICaller {
     static let shared = APICaller()
     
     private struct Constants {
-        static let apiKey = ""
-        static let sandboxKey = ""
-        static let baseUrl = ""
+        static let apiKey = "c6s97daad3ie4g2fd9ig"
+        static let sandboxKey = "sandbox_c6s97daad3ie4g2fd9j0"
+        static let baseUrl = "https://finnhub.io/api/v1/"
     }
     
     private init() {}
+    //MARK: Public
+    
+    public func search (query: String, completion: @escaping (Result<[String], Error>) -> Void ) {
+        guard let url = url(for: .search, queryParams: ["q":query]) else { return }
+    }
     
     
-    
+    //MARK: Private
     private enum Endpoint: String {
         case search
     }
@@ -34,7 +39,21 @@ final class APICaller {
     private func url(
         for endpoint: Endpoint,
         queryParams: [String : String] = [:]) -> URL? {
-            return nil
+            var urlString = Constants.baseUrl + endpoint.rawValue
+            var queryItems = [URLQueryItem]()
+            for (name, value) in queryParams {
+                queryItems.append(.init(name: name, value: value))
+            }
+            
+            queryItems.append(.init(name: "token", value: Constants.apiKey))
+            
+            let queryString = queryItems.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
+            
+            urlString += "?" + queryString
+            
+            print ("\n \(urlString) \n")
+            
+            return URL(string: urlString)
         }
     
     private func request<T: Codable>(
