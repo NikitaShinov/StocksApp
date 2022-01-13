@@ -11,6 +11,7 @@ import UIKit
 // MARK: - Framing
 
 extension UIView {
+    
     var width: CGFloat {
         frame.size.width
     }
@@ -28,11 +29,10 @@ extension UIView {
     }
     
     var top: CGFloat {
-        frame.size.width
+        frame.origin.y
     }
     
     var bottom: CGFloat {
         top + height
     }
-    
 }

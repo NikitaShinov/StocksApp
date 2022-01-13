@@ -18,7 +18,7 @@
 		5083508527680333006ED66E /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508427680333006ED66E /* APICaller.swift */; };
 		508350872768033F006ED66E /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508350862768033F006ED66E /* PersistenceManager.swift */; };
 		508350892768034C006ED66E /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508350882768034C006ED66E /* HapticsManager.swift */; };
-		5083508B2768BCA7006ED66E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508A2768BCA7006ED66E /* Extensions.swift */; };
+		5083508B2768BCA7006ED66E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508A2768BCA7006ED66E /* UIView.swift */; };
 		5083508D2768C03F006ED66E /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508C2768C03F006ED66E /* SearchResultTableViewCell.swift */; };
 		5083508F2768CFD1006ED66E /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508E2768CFD1006ED66E /* SearchResponse.swift */; };
 /* End PBXBuildFile section */
@@ -37,7 +37,7 @@
 		5083508427680333006ED66E /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		508350862768033F006ED66E /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		508350882768034C006ED66E /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
-		5083508A2768BCA7006ED66E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5083508A2768BCA7006ED66E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		5083508C2768C03F006ED66E /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		5083508E2768CFD1006ED66E /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,7 +126,7 @@
 				5083506E2767FA69006ED66E /* Assets.xcassets */,
 				508350652767FA63006ED66E /* AppDelegate.swift */,
 				508350672767FA63006ED66E /* SceneDelegate.swift */,
-				5083508A2768BCA7006ED66E /* Extensions.swift */,
+				5083508A2768BCA7006ED66E /* UIView.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -207,7 +207,7 @@
 				5083507F2768003F006ED66E /* TopStoriesViewController.swift in Sources */,
 				5083506A2767FA63006ED66E /* WatchListViewController.swift in Sources */,
 				508350872768033F006ED66E /* PersistenceManager.swift in Sources */,
-				5083508B2768BCA7006ED66E /* Extensions.swift in Sources */,
+				5083508B2768BCA7006ED66E /* UIView.swift in Sources */,
 				5083508527680333006ED66E /* APICaller.swift in Sources */,
 				5083508F2768CFD1006ED66E /* SearchResponse.swift in Sources */,
 				508350662767FA63006ED66E /* AppDelegate.swift in Sources */,

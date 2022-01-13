@@ -8,61 +8,70 @@
 import UIKit
 
 protocol SearchResultsViewControllerDelegate: AnyObject {
-    func searchResultsViewControllerDidSelect (searchResult: String)
+    func searchResultsViewControllerDidSelect(searchResult: SearchResult)
 }
 
-class SearchResultsViewController: UIViewController {
-    
-    weak var delegate: SearchResultsViewControllerDelegate?
-    private var results: [String] = []
-    
-    private let tableview: UITableView = {
-        let table = UITableView()
-        table.register(SearchResultTableViewCell.self,
-                       forCellReuseIdentifier: SearchResultTableViewCell.identifier)
-        return table
-    }()
 
+class SearchResultsViewController: UIViewController {
+
+    weak var delegate: SearchResultsViewControllerDelegate?
+    private var results: [SearchResult] = []
+
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: String(describing: SearchResultTableViewCell.self))
+        //step 14
+        tableView.isHidden = true
+        return tableView
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemBackground
         
-        setUpTable ()
+        view.backgroundColor = .systemBackground
+        setupTableView()
+       
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableview.frame = view.bounds
+    private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-    
-    private func setUpTable () {
-        view.addSubview(tableview)
-        tableview.delegate = self
-        tableview.dataSource = self
-    }
-    
-    public func update(with results: [String]) {
+
+    //step 12 update string to saerch results
+    public func update(with results: [SearchResult]) {
         self.results = results
-        tableview.reloadData()
+        //step 15
+        tableView.isHidden = results.isEmpty
+        tableView.reloadData()
     }
+
+    override func viewDidLayoutSubviews() {
+        tableView.frame = view.bounds
+    }
+    
 }
 
 extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath)
-        
-        
-        cell.textLabel?.text = "AAPL"
-        cell.detailTextLabel?.text = "Apple Inc."
-        return cell
+        return results.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SearchResultTableViewCell.self), for: indexPath)
+        let modelResult = results[indexPath.row]
+        cell.textLabel?.text = modelResult.displaySymbol
+        cell.detailTextLabel?.text = modelResult.description
+        return cell
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.searchResultsViewControllerDidSelect(searchResult: "AAPL")
+        let modelResult = results[indexPath.row]
+        delegate?.searchResultsViewControllerDidSelect(searchResult: modelResult)
+        
     }
+    
 }

@@ -7,20 +7,23 @@
 
 import Foundation
 
+final class PersistanceManager {
 
-final class PersistenceManager {
-    static let shared = PersistenceManager()
+    private init() {}
     
+    static let shared = PersistanceManager()
     private let userDefaults: UserDefaults = .standard
     
     private struct Constants {
         
     }
-    
-    private init () {}
-    
-    public var watchList: [String] {
+
+    public var watchlist: [String] {
         return []
+    }
+    
+    public var hasOnBoarded: Bool {
+        return false
     }
     
     public func addToWatchList() {
@@ -29,9 +32,5 @@ final class PersistenceManager {
     
     public func removeFromWatchList() {
         
-    }
-    
-    private var hasOnboarded: Bool {
-        return false
     }
 }
