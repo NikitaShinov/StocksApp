@@ -8,14 +8,6 @@
 import UIKit
 
 class NewsViewController: UIViewController {
-
-    let tableView: UITableView = {
-        let table = UITableView()
-        table.backgroundColor = .clear
-        return table
-    }()
-    
-    private let type: TypeOfContent
     
     enum TypeOfContent {
         case topStories
@@ -30,6 +22,19 @@ class NewsViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Properties
+    
+    private var stories = [String]()
+
+    let tableView: UITableView = {
+        let table = UITableView()
+        table.register(NewsHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsHeaderView.identifier)
+        table.backgroundColor = .clear
+        return table
+    }()
+    
+    private let type: TypeOfContent
     
     // MARK: - Initializers
     
@@ -84,10 +89,14 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         return 140
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsHeaderView.identifier) as? NewsHeaderView else {
+            return nil
+        }
+        header.configure(with: .init(title: self.type.title, shouldShowAddButton: false))
+        return header
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 70
+        return NewsHeaderView.preferredHeight
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
