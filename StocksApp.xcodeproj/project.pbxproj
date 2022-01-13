@@ -13,7 +13,7 @@
 		5083506A2767FA63006ED66E /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508350692767FA63006ED66E /* WatchListViewController.swift */; };
 		5083506F2767FA69006ED66E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5083506E2767FA69006ED66E /* Assets.xcassets */; };
 		508350722767FA69006ED66E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508350702767FA69006ED66E /* LaunchScreen.storyboard */; };
-		5083507F2768003F006ED66E /* TopStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083507E2768003F006ED66E /* TopStoriesViewController.swift */; };
+		5083507F2768003F006ED66E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083507E2768003F006ED66E /* NewsViewController.swift */; };
 		508350812768004E006ED66E /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508350802768004E006ED66E /* SearchResultsViewController.swift */; };
 		5083508327680065006ED66E /* StockDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508227680065006ED66E /* StockDetailsViewController.swift */; };
 		5083508527680333006ED66E /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508427680333006ED66E /* APICaller.swift */; };
@@ -35,7 +35,7 @@
 		5083506E2767FA69006ED66E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		508350712767FA69006ED66E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		508350732767FA69006ED66E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5083507E2768003F006ED66E /* TopStoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesViewController.swift; sourceTree = "<group>"; };
+		5083507E2768003F006ED66E /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		508350802768004E006ED66E /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		5083508227680065006ED66E /* StockDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsViewController.swift; sourceTree = "<group>"; };
 		5083508427680333006ED66E /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				508350692767FA63006ED66E /* WatchListViewController.swift */,
-				5083507E2768003F006ED66E /* TopStoriesViewController.swift */,
+				5083507E2768003F006ED66E /* NewsViewController.swift */,
 				508350802768004E006ED66E /* SearchResultsViewController.swift */,
 				5083508227680065006ED66E /* StockDetailsViewController.swift */,
 			);
@@ -272,7 +272,7 @@
 				508350892768034C006ED66E /* HapticsManager.swift in Sources */,
 				5083508D2768C03F006ED66E /* SearchResultTableViewCell.swift in Sources */,
 				5083508327680065006ED66E /* StockDetailsViewController.swift in Sources */,
-				5083507F2768003F006ED66E /* TopStoriesViewController.swift in Sources */,
+				5083507F2768003F006ED66E /* NewsViewController.swift in Sources */,
 				5083506A2767FA63006ED66E /* WatchListViewController.swift in Sources */,
 				508350872768033F006ED66E /* PersistenceManager.swift in Sources */,
 				5083508B2768BCA7006ED66E /* UIView.swift in Sources */,
