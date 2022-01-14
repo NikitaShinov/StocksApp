@@ -23,6 +23,7 @@
 		5083508D2768C03F006ED66E /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508C2768C03F006ED66E /* SearchResultTableViewCell.swift */; };
 		5083508F2768CFD1006ED66E /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083508E2768CFD1006ED66E /* SearchResponse.swift */; };
 		508469D32790C49500B4C008 /* NewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469D22790C49500B4C008 /* NewsHeaderView.swift */; };
+		508469D52790E90700B4C008 /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469D42790E90700B4C008 /* NewsStory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		5083508C2768C03F006ED66E /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		5083508E2768CFD1006ED66E /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		508469D22790C49500B4C008 /* NewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeaderView.swift; sourceTree = "<group>"; };
+		508469D42790E90700B4C008 /* NewsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				5083508E2768CFD1006ED66E /* SearchResponse.swift */,
+				508469D42790E90700B4C008 /* NewsStory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				5083507F2768003F006ED66E /* NewsViewController.swift in Sources */,
 				5083506A2767FA63006ED66E /* WatchListViewController.swift in Sources */,
 				508350872768033F006ED66E /* PersistenceManager.swift in Sources */,
+				508469D52790E90700B4C008 /* NewsStory.swift in Sources */,
 				5083508B2768BCA7006ED66E /* Extensions.swift in Sources */,
 				5083508527680333006ED66E /* APICaller.swift in Sources */,
 				5083508F2768CFD1006ED66E /* SearchResponse.swift in Sources */,
