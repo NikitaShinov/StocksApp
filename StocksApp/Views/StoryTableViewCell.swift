@@ -12,7 +12,7 @@ class StoryTableViewCell: UITableViewCell {
 
     static let identifier = "StoryTableViewCell"
     
-    static let preferredHeight: CGFloat = 120
+    static let preferredHeight: CGFloat = 140
     
     struct ViewModel {
         let source: String
@@ -37,7 +37,7 @@ class StoryTableViewCell: UITableViewCell {
     // Headline
     private let headlineLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .medium)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         label.numberOfLines = 0
         return label
     }()
@@ -53,7 +53,7 @@ class StoryTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.backgroundColor = .tertiarySystemBackground
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 6
         imageView.layer.masksToBounds = true
         return imageView
@@ -73,9 +73,9 @@ class StoryTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let imageSize: CGFloat = contentView.height - 6
+        let imageSize: CGFloat = contentView.height / 1.3
         storyImageView.frame = CGRect(x: contentView.width - imageSize - 10,
-                                      y: 3,
+                                      y: (contentView.height - imageSize) / 2,
                                       width: imageSize,
                                       height: imageSize)
         //Layout labels

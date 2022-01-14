@@ -25,16 +25,7 @@ class NewsViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var stories: [NewsStory] = [
-        NewsStory(category: "tech",
-                  datetime: 123,
-                  headline: "Some news",
-                  image: "",
-                  related: "Related",
-                  source: "BBC",
-                  summary: "",
-                  url: "")
-    ]
+    private var stories = [NewsStory]()
 
     let tableView: UITableView = {
         let table = UITableView()
@@ -79,7 +70,17 @@ class NewsViewController: UIViewController {
     }
     
     private func fetchNews() {
-        
+        APICaller.shared.news(for: type) { [weak self] result in
+            switch result {
+            case .success(let stories):
+                DispatchQueue.main.async {
+                    self?.stories = stories
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print (error.localizedDescription)
+            }
+        }
     }
     
     private func open(url: URL) {

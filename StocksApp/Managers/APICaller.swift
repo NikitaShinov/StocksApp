@@ -38,7 +38,7 @@ final class APICaller {
         switch type {
         case .topStories:
             request(
-                url: url(for: .companyNews, queryParams: ["category": "general"]),
+                url: url(for: .topStories, queryParams: ["category": "general"]),
                 expecting: [NewsStory].self,
                 completion: completion
             )
@@ -46,7 +46,7 @@ final class APICaller {
             let today = Date()
             let oneMonthBack = today.addingTimeInterval(-(Constants.day * 7))
             request(
-                url: url(for: .topStories,
+                url: url(for: .companyNews,
                             queryParams: ["symbol": symbol,
                                           "from": DateFormatter.newsDateFormatter.string(from: oneMonthBack),
                                           "to": DateFormatter.newsDateFormatter.string(from: today)]),
