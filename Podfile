@@ -6,5 +6,6 @@ target 'StocksApp' do
   use_frameworks!
 
   pod 'FloatingPanel'
+  pod 'SDWebImage'
 
 end
