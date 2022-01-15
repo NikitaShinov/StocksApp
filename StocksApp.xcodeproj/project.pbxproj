@@ -27,6 +27,7 @@
 		508469D72791BCC000B4C008 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469D62791BCC000B4C008 /* StoryTableViewCell.swift */; };
 		508469D927930D4C00B4C008 /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469D827930D4C00B4C008 /* WatchListTableViewCell.swift */; };
 		508469DB279310CE00B4C008 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469DA279310CE00B4C008 /* StockChartView.swift */; };
+		508469DD279374DE00B4C008 /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469DC279374DE00B4C008 /* MarketDataResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		508469D62791BCC000B4C008 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
 		508469D827930D4C00B4C008 /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
 		508469DA279310CE00B4C008 /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
+		508469DC279374DE00B4C008 /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				5083508E2768CFD1006ED66E /* SearchResponse.swift */,
 				508469D42790E90700B4C008 /* NewsStory.swift */,
+				508469DC279374DE00B4C008 /* MarketDataResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				508350892768034C006ED66E /* HapticsManager.swift in Sources */,
 				5083508D2768C03F006ED66E /* SearchResultTableViewCell.swift in Sources */,
+				508469DD279374DE00B4C008 /* MarketDataResponse.swift in Sources */,
 				5083508327680065006ED66E /* StockDetailsViewController.swift in Sources */,
 				5083507F2768003F006ED66E /* NewsViewController.swift in Sources */,
 				5083506A2767FA63006ED66E /* WatchListViewController.swift in Sources */,
