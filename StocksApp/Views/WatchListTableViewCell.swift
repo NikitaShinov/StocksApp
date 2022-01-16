@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol WatchListTableViewCellDelegate: AnyObject {
+    func didUpdateMaxWidth()
+}
+
 class WatchListTableViewCell: UITableViewCell {
 
     static let identifier = "WatchListTableViewCell"
+    
+    weak var delegate: WatchListTableViewCellDelegate?
     
     static let preferredHeight: CGFloat = 60
     
@@ -19,13 +25,13 @@ class WatchListTableViewCell: UITableViewCell {
         let price: String
         let changeColor: UIColor
         let changePercentage: String
-        //let chartViewModel: StockChartView.ViewModel
+        let chartViewModel: StockChartView.ViewModel
     }
     
     // SymbolLabel
     private let symbolLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         return label
     }()
     // CompanyLabel
@@ -35,22 +41,31 @@ class WatchListTableViewCell: UITableViewCell {
         return label
     }()
     // Mini chart view
-    private let minichartView = StockChartView()
+    private let minichartView: StockChartView = {
+        let chart = StockChartView()
+        chart.clipsToBounds = true
+        return chart
+    }()
     // Price label
     private let priceLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .right
         label.font = .systemFont(ofSize: 15, weight: .regular)
         return label
     }()
     // Change in price label
     private let changeLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .right
         label.textColor = .white
         label.font = .systemFont(ofSize: 15, weight: .regular)
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 6
         return label
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.clipsToBounds = true
         addSubviews(
             symbolLabel,
             companyLabel,
@@ -67,6 +82,43 @@ class WatchListTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        symbolLabel.sizeToFit()
+        companyLabel.sizeToFit()
+        priceLabel.sizeToFit()
+        changeLabel.sizeToFit()
+        
+        let yStart: CGFloat = (contentView.height - symbolLabel.height - companyLabel.height) / 2
+        symbolLabel.frame = CGRect(x: separatorInset.left,
+                                   y: yStart,
+                                   width: symbolLabel.width,
+                                   height: symbolLabel.height)
+        
+        companyLabel.frame = CGRect(x: separatorInset.left,
+                                    y: symbolLabel.bottom,
+                                   width: companyLabel.width,
+                                   height: companyLabel.height)
+        
+        let currentWidth = max(max(priceLabel.width, changeLabel.width), WatchListViewController.maxChangewidth)
+        
+        if currentWidth > WatchListViewController.maxChangewidth {
+            WatchListViewController.maxChangewidth = currentWidth
+            delegate?.didUpdateMaxWidth()
+        }
+        
+        priceLabel.frame = CGRect(x: contentView.width - 10 - currentWidth,
+                                  y: (contentView.height - priceLabel.height - changeLabel.height) / 2,
+                                   width: currentWidth,
+                                   height: priceLabel.height)
+        
+        changeLabel.frame = CGRect(x: contentView.width - 10 - currentWidth,
+                                   y: priceLabel.bottom,
+                                   width: currentWidth,
+                                   height: changeLabel.height)
+        
+        minichartView.frame = CGRect(x: priceLabel.left - (contentView.width / 3) - 5,
+                                     y: 6,
+                                     width: contentView.width / 3,
+                                     height: contentView.height - 12)
     }
     
     override func prepareForReuse() {

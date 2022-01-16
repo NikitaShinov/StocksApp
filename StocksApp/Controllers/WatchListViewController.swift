@@ -14,6 +14,8 @@ class WatchListViewController: UIViewController {
     private var searchTimer: Timer?
     
     private var panel: FloatingPanelController?
+    
+    static var maxChangewidth: CGFloat = 0 
     //Model
     private var watchlistMap: [String: [CandleStick]] = [:]
     
@@ -21,9 +23,13 @@ class WatchListViewController: UIViewController {
     private var viewModels: [WatchListTableViewCell.ViewModel] = []
     
     private let tableView: UITableView = {
-       let table = UITableView()
+        let table = UITableView()
+        table.register(WatchListTableViewCell.self, forCellReuseIdentifier: WatchListTableViewCell.identifier)
+        table.separatorStyle = .none
         return table
     }()
+    
+    private var observer: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +39,28 @@ class WatchListViewController: UIViewController {
         fetchWatchListData()
         setupFloatingPanel()
         setupTitleView()
+        setupOserver()
         
-        
+    }
+
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
     
     // MARK: - Private
+    private func setupOserver() {
+        observer = NotificationCenter.default.addObserver(
+            forName: .didAddToWatchList,
+            object: nil,
+            queue: .main,
+            using: { [weak self] _ in
+                self?.viewModels.removeAll()
+                self?.fetchWatchListData()
+        })
+    }
+    
     private func setUpTableView() {
         view.addSubviews(tableView)
         tableView.delegate = self
@@ -48,8 +71,9 @@ class WatchListViewController: UIViewController {
         let symbols = PersistanceManager.shared.watchlist
         let group = DispatchGroup()
         
-        for symbol in symbols {
+        for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
+            
             APICaller.shared.marketData(for: symbol) { [weak self] result in
                 defer {
                     group.leave()
@@ -78,7 +102,10 @@ class WatchListViewController: UIViewController {
                                     companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
                                     price: getLatestClosingPrice(from: candleSticks),
                                     changeColor: changepercentage < 0 ? .systemRed : .systemGreen,
-                                    changePercentage: String.percentage(from: changepercentage)))
+                                    changePercentage: String.percentage(from: changepercentage),
+                                    chartViewModel: .init(data: candleSticks.reversed().map { $0.close },
+                                                          showLegend: false,
+                                                          showAxis: false)))
         }
         self.viewModels = viewModels
     }
@@ -181,7 +208,36 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchListTableViewCell.identifier, for: indexPath) as? WatchListTableViewCell else {
+            fatalError()
+        }
+        cell.delegate = self
+        cell.configure(with: viewModels[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return WatchListTableViewCell.preferredHeight
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            //Update persistence
+            PersistanceManager.shared.removeFromWatchList(symbol: viewModels[indexPath.row].symbol)
+            //Update viewmodels
+            viewModels.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -189,4 +245,11 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
         //Open details for selection
     }
     
+}
+
+extension WatchListViewController: WatchListTableViewCellDelegate {
+    func didUpdateMaxWidth() {
+        // Optimize: Only refresh rows prior to th current row that changes the max width
+        tableView.reloadData()
+    }
 }
