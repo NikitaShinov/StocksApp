@@ -8,7 +8,6 @@
 import Foundation
 
 struct SearchResponse: Codable {
-    let count: Int
     let result: [SearchResult]
 }
 struct SearchResult: Codable {
