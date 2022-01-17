@@ -11,6 +11,7 @@ import UIKit
 // MARK: - Notification
 
 extension Notification.Name {
+    // Notification for when symbol gets added to watchlist
     static let didAddToWatchList = Notification.Name("didAddToWatchList")
 }
 
@@ -23,7 +24,7 @@ extension NumberFormatter {
         formatter.maximumFractionDigits = 2
         return formatter
     }()
-    
+    // Formatter for decimal style
     static let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.locale = .current
@@ -54,6 +55,7 @@ extension NumberFormatter {
 
 // MARK: - String
 extension String {
+    // Create String from time interval
     static func string(from timeinterval: TimeInterval) -> String {
         let date = Date(timeIntervalSince1970: timeinterval)
         return DateFormatter.prettyDateFormatter.string(from: date)
@@ -63,9 +65,9 @@ extension String {
         let formatter = NumberFormatter.percentFormatter
         return formatter.string(from: NSNumber(value: double)) ?? "\(double)"
     }
-    
+    // Format number to string
     static func formatted(number: Double) -> String {
-        let formatter = NumberFormatter.percentFormatter
+        let formatter = NumberFormatter.numberFormatter
         return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
     }
 }

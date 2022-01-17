@@ -17,7 +17,7 @@ class NewsViewController: UIViewController {
         var  title: String {
             switch self {
             case .topStories:
-                return "Top Stories"
+                return "Latest News"
             case .company(let symbol):
                 return symbol.uppercased()
             }
@@ -115,6 +115,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         //Open news story
+        HapticsManager.shared.vibrateForSelection()
         let story = stories[indexPath.row]
         guard let url = URL(string: story.url) else {
             presentFailedToOpenAlert()
@@ -124,6 +125,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func presentFailedToOpenAlert() {
+        HapticsManager.shared.vibrate(for: .error)
         let alert = UIAlertController(title: "Error",
                                       message: "We were unable to open the article",
                                       preferredStyle: .alert)
