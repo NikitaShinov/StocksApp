@@ -11,7 +11,7 @@ final class APICaller {
     static let shared = APICaller()
     //step 1 go to finnhubio for an account, obtain keys and base URL starting points
     private struct Constants {
-        static let key = "c7bvkfqad3ia366g4tq0"//c6s97daad3ie4g2fd9ig - c7bvkfqad3ia366g4tq0
+        static let key = "c7ibloqad3if83qghpp0"//c6s97daad3ie4g2fd9ig - c7bvkfqad3ia366g4tq0
         static let sandBoxApiKey = "sandbox_c7bvkfqad3ia366g4tqg"//sandbox_c6s97daad3ie4g2fd9j0 - sandbox_c7bvkfqad3ia366g4tqg
         static let baseUrl = "https://finnhub.io/api/v1/"
         static let day: TimeInterval = 3600 * 24
@@ -70,12 +70,19 @@ final class APICaller {
             ])
             request(url: url, expecting: MarketDataResponse.self, completion: completion)
         }
+    public func financialMetrics(for symbol: String, completion: @escaping(Result<FinancialMetricsResponse, Error>) -> Void){
+        let url = url(for: .financials, queryParams: ["symbol": symbol, "metric": "all"])
+        request(url: url,
+                expecting: FinancialMetricsResponse.self,
+                completion: completion)
+    }
     //MARK:- Private
     private enum Endpoint: String {
         case search //raw value of this case statement is "Search"
         case topStories = "news"
         case companyNews = "company-news"
         case marketData = "stock/candle"
+        case financials = "stock/metric"
     }
     
     private enum APIError: Error {

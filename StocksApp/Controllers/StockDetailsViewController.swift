@@ -84,8 +84,29 @@ class StockDetailsViewController: UIViewController {
     }
     
     private func fetchFinancialData() {
+        let group = DispatchGroup()
         //fetch candle sticks if needed
+        if candleStickData.isEmpty {
+            group.enter()
+            
+        }
         //fetch financial metrics
+        group.enter()
+        APICaller.shared.financialMetrics(for: symbol) { [weak self] result in
+            defer {
+                group.leave()
+            }
+            switch result {
+            case .success(let response):
+                let metrics = response.metric
+                print (metrics)
+            case .failure(let error):
+                print (error.localizedDescription)
+            }
+        }
+        group.notify(queue: .main) { [weak self] in
+            self?.renderChart()
+        }
         renderChart()
     }
     
@@ -104,7 +125,14 @@ class StockDetailsViewController: UIViewController {
     }
     
     private func renderChart() {
+        //Chart viewModel | financial metric viewmodels
+        let headerView = StockDetailHeaderView(frame: CGRect(x: 0,
+                                                             y: 0,
+                                                             width: view.width,
+                                                             height: (view.width * 0.7) + 100))
         
+        //configure
+        tableView.tableHeaderView = headerView
     }
 }
 
