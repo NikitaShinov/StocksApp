@@ -30,6 +30,7 @@
 		508469DD279374DE00B4C008 /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469DC279374DE00B4C008 /* MarketDataResponse.swift */; };
 		508469DF2794F56A00B4C008 /* FinancialMetricsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469DE2794F56A00B4C008 /* FinancialMetricsResponse.swift */; };
 		508469E12794F78700B4C008 /* StockDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469E02794F78700B4C008 /* StockDetailHeaderView.swift */; };
+		508469E32794FBED00B4C008 /* MetricCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508469E22794FBED00B4C008 /* MetricCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		508469DC279374DE00B4C008 /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
 		508469DE2794F56A00B4C008 /* FinancialMetricsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialMetricsResponse.swift; sourceTree = "<group>"; };
 		508469E02794F78700B4C008 /* StockDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailHeaderView.swift; sourceTree = "<group>"; };
+		508469E22794FBED00B4C008 /* MetricCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				508469D827930D4C00B4C008 /* WatchListTableViewCell.swift */,
 				508469DA279310CE00B4C008 /* StockChartView.swift */,
 				508469E02794F78700B4C008 /* StockDetailHeaderView.swift */,
+				508469E22794FBED00B4C008 /* MetricCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			files = (
 				508350892768034C006ED66E /* HapticsManager.swift in Sources */,
 				5083508D2768C03F006ED66E /* SearchResultTableViewCell.swift in Sources */,
+				508469E32794FBED00B4C008 /* MetricCollectionViewCell.swift in Sources */,
 				508469DD279374DE00B4C008 /* MarketDataResponse.swift in Sources */,
 				5083508327680065006ED66E /* StockDetailsViewController.swift in Sources */,
 				5083507F2768003F006ED66E /* NewsViewController.swift in Sources */,
