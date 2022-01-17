@@ -90,6 +90,17 @@ class StockDetailsViewController: UIViewController {
         //fetch candle sticks if needed
         if candleStickData.isEmpty {
             group.enter()
+            APICaller.shared.marketData(for: symbol) { [weak self] result in
+                defer {
+                    group.leave()
+                }
+                switch result {
+                case .success(let response):
+                    self?.candleStickData = response.candleSticks
+                case .failure(let error):
+                    print (error.localizedDescription)
+                }
+            }
             
         }
         //fetch financial metrics
@@ -132,6 +143,7 @@ class StockDetailsViewController: UIViewController {
                                                              y: 0,
                                                              width: view.width,
                                                              height: (view.width * 0.7) + 100))
+        
         var viewModels = [MetricCollectionViewCell.ViewModel]()
         if let metrics = metrics {
             viewModels.append(.init(name: "52W High", value: "\(metrics.AnnualWeekHigh)"))
@@ -142,7 +154,9 @@ class StockDetailsViewController: UIViewController {
         }
         //configure
         headerView.configure(
-            chartViewModel: .init(data: [], showLegend: false, showAxis: false),
+            chartViewModel: .init(data: candleStickData.reversed().map { $0.close },
+                                  showLegend: true,
+                                  showAxis: true),
             metricViewModels: viewModels)
         tableView.tableHeaderView = headerView
     }
