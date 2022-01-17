@@ -97,15 +97,16 @@ class WatchListViewController: UIViewController {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         
         for (symbol, candleSticks) in watchlistMap {
-            let changepercentage = getchangePercentage(symbol: symbol, data: candleSticks)
+            let changePercentage = getchangePercentage(symbol: symbol, data: candleSticks)
             viewModels.append(.init(symbol: symbol,
                                     companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
                                     price: getLatestClosingPrice(from: candleSticks),
-                                    changeColor: changepercentage < 0 ? .systemRed : .systemGreen,
-                                    changePercentage: String.percentage(from: changepercentage),
+                                    changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
+                                    changePercentage: String.percentage(from: changePercentage),
                                     chartViewModel: .init(data: candleSticks.reversed().map { $0.close },
                                                           showLegend: false,
-                                                          showAxis: false)))
+                                                          showAxis: false,
+                                                          fillColor: changePercentage < 0 ? .systemRed : .systemGreen)))
         }
         self.viewModels = viewModels
     }
