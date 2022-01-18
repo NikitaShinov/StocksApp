@@ -8,7 +8,7 @@
 import UIKit
 import FloatingPanel
 
-class WatchListViewController: UIViewController {
+final class WatchListViewController: UIViewController {
     
     //step 13 declare a timer
     private var searchTimer: Timer?
@@ -157,8 +157,14 @@ class WatchListViewController: UIViewController {
     }
     
     private func setupTitleView() {
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: navigationController?.navigationBar.height ?? 100))
-        let lable = UILabel(frame: CGRect(x: 10, y: 0, width: titleView.width-20, height: titleView.height))
+        let titleView = UIView(frame: CGRect(x: 0,
+                                             y: 0,
+                                             width: view.width,
+                                             height: navigationController?.navigationBar.height ?? 100))
+        let lable = UILabel(frame: CGRect(x: 10,
+                                          y: 0,
+                                          width: titleView.width-20,
+                                          height: titleView.height))
         lable.text = "Stocks"
         lable.font = .systemFont(ofSize: 35, weight: .medium)
         titleView.addSubview(lable)
@@ -217,7 +223,7 @@ extension WatchListViewController: FloatingPanelControllerDelegate {
 extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return watchlistMap.count
+        return viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

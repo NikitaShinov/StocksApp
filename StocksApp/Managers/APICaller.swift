@@ -11,7 +11,7 @@ final class APICaller {
     static let shared = APICaller()
     //step 1 go to finnhubio for an account, obtain keys and base URL starting points
     private struct Constants {
-        static let key = "c7ibloqad3if83qghpp0"//c6s97daad3ie4g2fd9ig - c7bvkfqad3ia366g4tq0
+        static let key = "c7bvkfqad3ia366g4tq0"//c6s97daad3ie4g2fd9ig - c7bvkfqad3ia366g4tq0
         static let sandBoxApiKey = "sandbox_c7bvkfqad3ia366g4tqg"//sandbox_c6s97daad3ie4g2fd9j0 - sandbox_c7bvkfqad3ia366g4tqg
         static let baseUrl = "https://finnhub.io/api/v1/"
         static let day: TimeInterval = 3600 * 24
@@ -34,7 +34,8 @@ final class APICaller {
         //            return
     }
     
-    public func news(for type: NewsViewController.TypeOfContent, completion: @escaping (Result<[NewsStory], Error>) -> Void) {
+    public func news(for type: NewsViewController.TypeOfContent,
+                     completion: @escaping (Result<[NewsStory], Error>) -> Void) {
         switch type {
         case .topStories:
             request(
@@ -133,3 +134,7 @@ final class APICaller {
         task.resume()
     }
 }
+
+
+//testing https://finnhub.io/api/v1/company-news?to=2022--01-18&symbol=GOOG&from=2022--01-11&token=c7bvkfqad3ia366g4tq0
+//testing https://finnhub.io/api/v1/company-news?from=2022-01-11&to=2022-01-18&symbol=GOOG&token=c7bvkfqad3ia366g4tq0

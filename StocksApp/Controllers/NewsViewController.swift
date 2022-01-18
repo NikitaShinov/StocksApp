@@ -27,6 +27,8 @@ class NewsViewController: UIViewController {
     // MARK: - Properties
     
     private var stories = [NewsStory]()
+    
+    private let type: TypeOfContent
 
     let tableView: UITableView = {
         let table = UITableView()
@@ -36,7 +38,6 @@ class NewsViewController: UIViewController {
         return table
     }()
     
-    private let type: TypeOfContent
     
     // MARK: - Initializers
     
@@ -96,7 +97,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         return stories.count    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StoryTableViewCell.identifier, for: indexPath) as? StoryTableViewCell else { fatalError() }
-        cell.configure(with: .init(model: stories[indexPath.row]))
+        cell.configure(with: StoryTableViewCell.ViewModel(model: stories[indexPath.row]))
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

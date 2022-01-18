@@ -37,7 +37,7 @@ class StoryTableViewCell: UITableViewCell {
     // Headline
     private let headlineLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 22, weight: .medium)
+        label.font = .systemFont(ofSize: 22, weight: .regular)
         label.numberOfLines = 0
         return label
     }()
@@ -62,7 +62,6 @@ class StoryTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .secondarySystemBackground
-        backgroundColor = nil
         addSubviews(sourceLabel, headlineLabel, dateLabel, storyImageView)
     }
     
@@ -73,7 +72,7 @@ class StoryTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let imageSize: CGFloat = contentView.height / 1.3
+        let imageSize: CGFloat = contentView.height / 1.4
         storyImageView.frame = CGRect(x: contentView.width - imageSize - 10,
                                       y: (contentView.height - imageSize) / 2,
                                       width: imageSize,

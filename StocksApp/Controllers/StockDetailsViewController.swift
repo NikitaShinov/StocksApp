@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class StockDetailsViewController: UIViewController {
+final class StockDetailsViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -120,7 +120,6 @@ class StockDetailsViewController: UIViewController {
         group.notify(queue: .main) { [weak self] in
             self?.renderChart()
         }
-        renderChart()
     }
     
     private func fetchNews() {
@@ -169,7 +168,7 @@ class StockDetailsViewController: UIViewController {
 extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        stories.count
+        return stories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
